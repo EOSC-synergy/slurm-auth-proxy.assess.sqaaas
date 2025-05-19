@@ -1,0 +1,72 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EGI-Federation/slurm-auth-proxy:
+      branch: main
+      repo: https://github.com/EGI-Federation/slurm-auth-proxy
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/EGI-Federation/slurm-auth-proxy git:
+        commands:
+        - /usr/bin/env sh .sqa/script.lumpy-grey-stoat.sh
+        container: qc.acc_dorky-magnolia-wasp
+  QC.Doc:
+    repos:
+      github.com/EGI-Federation/slurm-auth-proxy find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.skinny-silver-owl.sh
+        container: qc.doc_lovely-fuchsia-jaguar
+      github.com/EGI-Federation/slurm-auth-proxy git:
+        commands:
+        - /usr/bin/env sh .sqa/script.flabby-corn-wildebeest.sh
+        container: qc.doc_muzzy-cobalt-tzu
+      github.com/EGI-Federation/slurm-auth-proxy markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.flabby-dandelion-shark.sh
+        container: qc.doc_skimpy-cyan-rattlesnake
+  QC.Lic:
+    repos:
+      github.com/EGI-Federation/slurm-auth-proxy licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.stinky-cornflower-albatross.sh
+        container: qc.lic_blurry-tangerine-armadillo
+  QC.Sec:
+    repos:
+      github.com/EGI-Federation/slurm-auth-proxy bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.messy-gamboge-newfoundland.sh
+        container: qc.sec_snazzy-denim-greyhound
+  QC.Sty:
+    repos:
+      github.com/EGI-Federation/slurm-auth-proxy flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.lumpy-gamboge-chihuahua.sh
+        container: qc.sty_homey-blue-bandicoot
+      github.com/EGI-Federation/slurm-auth-proxy hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.snappy-russet-newt.sh
+        container: qc.sty_randy-alizarin-dingo
+      github.com/EGI-Federation/slurm-auth-proxy jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.scanty-wheat-chimpanzee.sh
+        container: qc.sty_fuzzy-tomato-javanese
+  QC.Uni:
+    repos:
+      github.com/EGI-Federation/slurm-auth-proxy pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.grumpy-puce-tang.sh
+        container: qc.uni_slimy-olive-dog
+  QC.Ver:
+    repos:
+      github.com/EGI-Federation/slurm-auth-proxy get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.scanty-green-hyena.sh
+        container: qc.ver_silly-flax-fousek
+timeout: 5400
